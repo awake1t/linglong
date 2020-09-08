@@ -1,0 +1,23 @@
+Server:
+  RunMode: debug
+  HttpPort: 18000
+  ReadTimeout: 60
+  WriteTimeout: 60
+App:
+  DefaultPageSize: 10
+  MaxPageSize: 100
+  DefaultContextTimeout: 60
+  JwtSecret: fas65fd4541e352231a#D12
+  PortUserDict: ./configs/user.txt
+  PortPassDict: ./configs/pass.txt
+Database:
+  DBType: mysql
+  UserName: root
+  Password: MysqlPassword
+  Host: 127.0.0.1:3306
+  DBName: linglong
+  TablePrefix:
+  Charset: utf8
+  ParseTime: True
+  MaxIdleConns: 10
+  MaxOpenConns: 30

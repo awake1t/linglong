@@ -1,0 +1,11 @@
+package e
+
+const (
+	SUCCESS = 200
+	ERROR = 500
+	INVALID_PARAMS = 400
+
+
+	ERROR_CRON_SPEC = 10001
+
+)
