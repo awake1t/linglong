@@ -14,13 +14,12 @@
 
 ​	masscan可以无限扫描，但是对于失效资产我们也不能一直保存。linglong通过动态设置资产扫描周期，对于N个扫描周期都没有扫描到的资产会进行删除。保存资产的时效性
 
-
-![image](https://github.com/awake1t/linglong/tree/master/configs/img/index.png)
-![image](https://github.com/awake1t/linglong/tree/master/configs/img/iplist.png)
-![image](https://github.com/awake1t/linglong/tree/master/configs/img/tasklist.png)
-![image](https://github.com/awake1t/linglong/tree/master/configs/img/addtask.png)
-![image](https://github.com/awake1t/linglong/tree/master/configs/img/tasklog.png)
-![image](https://github.com/awake1t/linglong/tree/master/configs/img/setting.png)
+![image](https://github.com/awake1t/linglong/blob/master/img/index.png)
+![image](https://github.com/awake1t/linglong/blob/master/img/iplist.png)
+![image](https://github.com/awake1t/linglong/blob/master/img/tasklist.png)
+![image](https://github.com/awake1t/linglong/blob/master/img/addtask.png)
+![image](https://github.com/awake1t/linglong/blob/master/img/tasklog.png)
+![image](https://github.com/awake1t/linglong/blob/master/img/setting.png)
 
 
 ### 本地安装
