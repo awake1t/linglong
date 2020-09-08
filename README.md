@@ -1,6 +1,4 @@
 # linglong
-一款甲方资产巡航扫描系统。系统定位是发现资产，进行端口爆破。帮助企业更快发现弱口令问题。主要功能包括: 资产探测、端口爆破、定时任务、管理后台识别、报表展示
-
 
   一款甲方资产巡航扫描系统。系统定位是发现资产，进行端口爆破。帮助企业更快发现弱口令问题。主要功能包括: `资产探测`、`端口爆破`、`定时任务`、`管理后台识别`、`报表展示`。
 
@@ -16,6 +14,13 @@
 
 ​	masscan可以无限扫描，但是对于失效资产我们也不能一直保存。linglong通过动态设置资产扫描周期，对于N个扫描周期都没有扫描到的资产会进行删除。保存资产的时效性
 
+
+![image](https://github.com/awake1t/linglong/tree/master/configs/img/index.png)
+![image](https://github.com/awake1t/linglong/tree/master/configs/img/iplist.png)
+![image](https://github.com/awake1t/linglong/tree/master/configs/img/tasklist.png)
+![image](https://github.com/awake1t/linglong/tree/master/configs/img/addtask.png)
+![image](https://github.com/awake1t/linglong/tree/master/configs/img/tasklog.png)
+![image](https://github.com/awake1t/linglong/tree/master/configs/img/setting.png)
 
 
 ### 本地安装
@@ -38,7 +43,6 @@ chmod +x linglonglinux && ./linglonglinux
 
 访问http://127.0.0.1:18000 ，进入登陆界面。 账号:awake 密码:awakehhhh 。进入设置界面，配置你要扫描资产、端口。安装完成
 ```
-
 
 
 ### 部署到服务端
