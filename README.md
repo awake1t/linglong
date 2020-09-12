@@ -44,12 +44,13 @@ chmod +x linglonglinux && ./linglonglinux
 ```
 
 
-### 部署到服务端
+### 部署到服务器
 
-> 因为代码是前后端分离。上面的安装方式用自己电脑安装没问题。 如果部署到服务端需要修改前端请求后端的地址。使用如下命令把`YourServerDomain`。替换成你的服务器域名，比如github.com。就可以咯～
+> 因为代码是前后端分离。上面的安装方式用自己电脑安装没问题。 如果部署到服务器上，你会发现。进入登陆界面。点击登陆没有任何反应。因为为了不让大家安装vue，vue的代码是写死的。
+需要修改前端请求后端的地址。使用如下命令把`YourServer`。替换成你的服务器协议+ip+port，比如http://10.10.10.10:80。就可以咯～
 
 ```
-sed -i 's#http://127.0.0.1:18000#http://YourServerDomain#g' ./dist/js/app.48c176d1.js && sed -i 's#http://127.0.0.1:18000#http://YourServerDomain#g' ./dist/js/app.48c176d1.js.map
+sed -i 's#http://127.0.0.1:18000#http://10.10.10.10:80#g' ./dist/js/app.48c176d1.js && sed -i 's#http://127.0.0.1:18000#http://10.10.10.10:80#g' ./dist/js/app.48c176d1.js.map
 ```
 
 
