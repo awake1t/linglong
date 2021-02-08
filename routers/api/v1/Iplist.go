@@ -143,7 +143,7 @@ func InitMasscan() {
 	data["status"] = 1
 	models.AddLog(data)
 
-	fmt.Println("massRes:", massRes)
+	//fmt.Println("massRes:", massRes)
 
 	// 并发处理masscan扫描结果
 	wg := &sync.WaitGroup{}
@@ -170,11 +170,11 @@ func InitMasscan() {
 	}
 
 
-	fmt.Println("title识别完成,准备登陆路径扫描识别:")
+	//fmt.Println("title识别完成,准备登陆路径扫描识别:")
 
 	findLoginWeb()
 
-	fmt.Println("title识别完成，准备删除过期资产")
+	//fmt.Println("title识别完成，准备删除过期资产")
 
 	masssettings := models.GetSettingTitle()
 	expirteCount := masssettings[0].MasscanDeltime
@@ -414,7 +414,7 @@ func findLoginWeb() {
 	for _, settingKey := range setting {
 		defer func() {
 			if err := recover(); err != nil {
-				fmt.Println("setting.setting Protocol11111x:", err)
+				fmt.Println("findLoginWeb err :", err)
 			}
 		}()
 

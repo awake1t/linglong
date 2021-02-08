@@ -1,0 +1,28 @@
+version: '2'
+services:
+  mysql:
+    build: ./mysql
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_DATABASE=linglong
+      - MYSQL_ROOT_PASSWORD=linglong8s
+    ports:
+      - "3305:3306"
+    restart: always
+    command: [
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci',
+    ]
+  server:
+    build: .
+    ports:
+     - "18000:18000"
+    links:
+     - mysql:mysql
+    depends_on:
+     - mysql
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+
+

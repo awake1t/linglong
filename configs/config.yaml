@@ -13,8 +13,9 @@ App:
 Database:
   DBType: mysql
   UserName: root
-  Password: MysqlPassword
-  Host: 127.0.0.1:3306
+  Password: linglong8s
+  Host: mysql
+#  Host: 127.0.0.1:3306
   DBName: linglong
   TablePrefix:
   Charset: utf8
