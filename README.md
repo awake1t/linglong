@@ -19,6 +19,7 @@
 
 
 ## 预览
+tip:如果图片加载不出来,[点我去gitee看图片](https://gitee.com/awake1t/linglong)
 
 **首页**
 ![image](https://github.com/awake1t/linglong/blob/master/img/index.gif)
