@@ -79,13 +79,11 @@
 ### Docker安装
 运行如下命令
 
-​```
+```bash
 git clone https://github.com/awake1t/linglong
-
 cd linglong
-
 docker-compose up -d
-​```
+```
 
 运行结束后,运行`docker container ls -a`看下是否运行正常
 ![image](https://github.com/awake1t/linglong/blob/master/img/docker.png)
