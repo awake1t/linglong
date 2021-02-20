@@ -90,7 +90,7 @@ docker-compose up -d
 运行结束后,运行`docker container ls -a`看下是否运行正常
 ![image](https://github.com/awake1t/linglong/blob/master/img/docker.png)
 
-web访问 http://ip:18000
+web访问 http://ip:8001
 账号:linglong
 密码:linglong5s
 
