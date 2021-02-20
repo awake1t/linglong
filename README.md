@@ -1,86 +1,118 @@
+
 # linglong
 
-  一款甲方资产巡航扫描系统。系统定位是发现资产，进行端口爆破。帮助企业更快发现弱口令问题。主要功能包括: `资产探测`、`端口爆破`、`定时任务`、`管理后台识别`、`报表展示`。
+  一款资产巡航扫描系统。系统定位是通过masscan+nmap无限循环去发现新增资产，自动进行端口弱口令爆破/、指纹识别、XrayPoc扫描。主要功能包括: `资产探测`、`端口爆破`、`Poc扫描`、`指纹识别`、`定时任务`、`管理后台识别`、`报表展示`。 使用场景是Docker搭建好之后，设置好你要扫描的网段跟爆破任务。就不要管他了，没事过来收漏洞就行了
 
-## 简介	
-> 企业资产的全面收集才是进行下一步的黑盒漏洞探测前提。linglong使用masscan无限循环进行资产探测，配合nmap进行端口指纹识别。保证企业更快发现企业暴露资产。
 
-![image](https://github.com/awake1t/linglong/blob/master/img/index.png)
-![image](https://github.com/awake1t/linglong/blob/master/img/iplist.png)
-![image](https://github.com/awake1t/linglong/blob/master/img/tasklist.png)
-![image](https://github.com/awake1t/linglong/blob/master/img/addtask.png)
-![image](https://github.com/awake1t/linglong/blob/master/img/tasklog.png)
-![image](https://github.com/awake1t/linglong/blob/master/img/setting.png)
 
 ### 功能清单
 
-- [x] masscan+namp巡航扫描及时发现资产
+- [x] masscan+namp巡航扫描资产
 - [x] 创建定时爆破任务(FTP/SSH/SMB/MSSQL/MYSQL/POSTGRESQL/MONGOD)
 - [x] 管理后台识别
-- [x] 结果下载
+- [x] 结果导出
 - [x] 报表展示
-- [x] docker部署 - 方便体验、部署 [21-02-08] 
-- [ ] CMS识别 - 结合威胁情报、如果某个CMS爆出漏洞，可以快速定位企业内部有多少资产
-- [ ] poc扫描 - 还在考虑怎么加入。主要是考虑poc的长期更新。目前暂定调用xrayPoc,Xray牛逼！
+- [x] docker一键部署 [21-02-08] 
+- [x] CMS识别 - 结合威胁情报、如果某个CMS爆出漏洞，可以快速定位企业内部有多少资产 [21-02-20]
+- [x] poc扫描 - 调用xray的Poc,对新发现的资产自动扫描poc [21-02-20]
 
 
-**关于管理后台识别**
 
-不论甲方乙方。大家在渗透一个网站的时候，很多时候都想尽快找到后台地址。而linglong对自己的资产库进行Title识别。然后根据title关键字、url关键字、body关键字(比如url中包含login、body中包含username/password)进行简单区分后台。帮助我们渗透中尽快锁定后台。  
+## 预览
 
-**关于资产更新**
+**首页**
+![image](https://github.com/awake1t/linglong/blob/master/img/index.gif)
 
-masscan可以无限扫描，但是对于失效资产我们也不能一直保存。linglong通过动态设置资产扫描周期，对于N个扫描周期都没有扫描到的资产会进行删除。保存资产的时效性
+**资产列表**
+![image](https://github.com/awake1t/linglong/blob/master/img/ip.png)
+
+**敏感后台**
+![image](https://github.com/awake1t/linglong/blob/master/img/login.png)
+
+**指纹管理**
+![image](https://github.com/awake1t/linglong/blob/master/img/finger.gif)
+
+**任务列表**
+![image](https://github.com/awake1t/linglong/blob/master/img/task.gif)
+
+**任务详情**
+![image](https://github.com/awake1t/linglong/blob/master/img/task-de.png)
+
+**xray**
+![image](https://github.com/awake1t/linglong/blob/master/img/xray.png)
+![image](https://github.com/awake1t/linglong/blob/master/img/xray-poc.png)
+
+**设置**
+![image](https://github.com/awake1t/linglong/blob/master/img/setting.gif)
+
+
+
+
+
+**管理后台识别**
+
+  不论甲方乙方。大家在渗透一个网站的时候，很多时候都想尽快找到后台地址。linglong对自己的资产库进行Title识别。然后根据title关键字、url关键字、body关键字(比如url中包含login、body中包含username/password)进行简单区分后台。帮助我们渗透中尽快锁定后台。 
+
+
+
+**指纹识别**
+
+  系统会对新发现的资产进行一遍指纹识别, 也可以手动新增指纹。比如某个CMS爆出漏洞，新增指纹扫描一遍系统中存在的资产。可以快速定位到漏洞资产，对于渗透打点或者甲方应急都是极好的
+
+
+
+**POC扫描**
+
+  对于任何一个扫描系统，poc扫描都是必不可少的。但是poc的更新一直是所有开源项目面临的一个问题。综合考虑用Xray的poc,感谢Xray对安全圈做出的贡献！ linglong会对每次新发现的资产进行一遍Xray的Poc扫描。如果发现漏洞会自动入库，可以可视化查看漏洞结果
+
+
+
+**资产巡航更新**
+
+  masscan可以无限扫描，但是对于失效资产我们也不能一直保存。linglong通过动态设置资产扫描周期，对于N个扫描周期都没有扫描到的资产会进行删除。保存资产的时效性
+
 
 
 ## 安装
 
+
 ### Docker安装
-```
+运行如下命令
+​```
 https://github.com/awake1t/linglong
 cd linglong
 docker-compose up -d
-```
+​```
+运行结束后,运行`docker container ls -a`看下是否运行正常
+![image](https://github.com/awake1t/linglong/blob/master/img/docker.png)
 
-运行结束后访问 http://ip:18000
+web访问 http://ip:18000
 账号:linglong
 密码:linglong5s
 
 
-
-### 本地安装
-
-先保证系统安装了 `Massscan`、`Nmap`、`Mysql`.
-
-
-```
-// 下载
-git clone https://github.com/awake1t/linglong
-cd linglong
-
-// 导入数据库
-mysql -uroot -p < mysql/init.sql
-
-// 修改配置文件中数据库密码为你的数据库密码,文件第16行
-vim ./configs/config.yaml 
-
-// 运行
-chmod +x linglong && ./linglong
-
-访问http://127.0.0.1:18000 ，进入登陆界面。 账号:linglong 密码:linglong5s 。进入设置界面，配置你要扫描资产、端口。安装完成
-```
-
-> 因为代码是前后端分离。上面的安装方式部署在自己电脑上是没问题的。 但是如果部署到服务器上，你会发现。进入登陆界面。点击登陆没有任何反应。因为为了不让大家安装vue，vue的代码是写死的。
-需要修改前端请求后端的地址。使用如下命令把`http://10.10.10.10:80`。替换成你的服务器协议+ip+port。就可以咯～
-
-```
-sed -i 's#http://127.0.0.1:18000#http://10.10.10.10:80#g' ./dist/js/app.48c176d1.js && sed -i 's#http://127.0.0.1:18000#http://10.10.10.10:80#g' ./dist/js/app.48c176d1.js.map
-```
+| 类型           | 用户名                                | 密码       |
+| -------------- | ------------------------------------- | ---------- |
+| Web账号        | linglong                                 | linglong5s|
+| mysql数据库 | root                                  | linglong8s  |
 
 
-### 致谢
+
+**注: 首次运行在设置里修改扫描的网段范围,点击保存后就行了**
+
+
+
+## 未来
+
+  我觉得一个好的工具就是 **拿来就用、用完既走**。后期会加入漏洞的机器人通知，发现漏洞自动通知到机器人，连你登录系统的步骤都省略。 或者看有没有方式把Goby集成。加油，干饭人！
+
+
+
+## 致谢
 
 https://github.com/ysrc/xunfeng
+
+https://github.com/chaitin/xray
 
 
 

@@ -29,7 +29,7 @@ func GetLogTotal(maps interface{}) (count int) {
 	return
 }
 
-func AddLog(data map[string]interface{}) {
+func AddLog(data map[string]interface{})int {
 	log := Log{
 		TaskId:      data["taskid"].(int),
 		TaskName:    data["task_name"].(string),
@@ -42,7 +42,15 @@ func AddLog(data map[string]interface{}) {
 		CreatedTime: time.Now().Format("20060102150405"),
 	}
 	db.Create(&log)
+	return log.Id
 }
+
+
+func EditLog(id int, data interface{}) bool {
+	db.Model(&Log{}).Where("id = ?", id).Updates(data)
+	return true
+}
+
 
 func GetLogUpdate() (log []Log) {
 	db.Select("created_time").Order("created_time desc").Limit(10).Find(&log)

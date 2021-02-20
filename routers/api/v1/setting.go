@@ -64,6 +64,44 @@ func EditSetting(c *gin.Context) {
 	})
 }
 
+// 修改密码
+func EditPass(c *gin.Context) {
+
+	username := c.PostForm("username")
+	oldpass := c.PostForm("oldpass")
+	newpass := c.PostForm("newpass")
+	newpass2 := c.PostForm("newpass2")
+
+	code := e.INVALID_DIFFPASS
+	if newpass != newpass2{
+		c.JSON(http.StatusOK, gin.H{
+			"code": code,
+			"msg":  "两次密码不一致",
+			"data": make(map[string]string),
+		})
+		return
+	}
+
+	valid := validation.Validation{}
+
+	code = e.INVALID_PASS
+	if ! valid.HasErrors() {
+		isExist := models.CheckAuth(username, oldpass)
+		if isExist {
+			data := make(map[string]interface{})
+			data["password"] = newpass
+			models.EditAuth(username,data)
+			code = e.SUCCESS
+		}
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": code,
+		"msg":  e.GetMsg(code),
+		"data": make(map[string]string),
+	})
+}
+
 type node struct {
 	Name  string `json:"name"`
 	Value int    `json:"value"`

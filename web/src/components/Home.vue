@@ -31,9 +31,19 @@
           <span slot="title">敏感后台</span>
         </el-menu-item>
 
+        <el-menu-item index="/finger">
+          <i class="el-icon-s-check"></i>
+          <span slot="title">指纹管理</span>
+        </el-menu-item>
+
         <el-menu-item index="/task">
           <i class="el-icon-s-order"></i>
           <span slot="title">任务列表</span>
+        </el-menu-item>
+
+        <el-menu-item index="/xrayres">
+          <i class="el-icon-s-order"></i>
+          <span slot="title">Xray结果</span>
         </el-menu-item>
 
         <el-submenu index="/zichan">
@@ -45,14 +55,23 @@
           </template>
           <!-- 二级菜单 -->
           <el-menu-item-group>
-            <el-menu-item index="/log" @click="saveNavState('/log')">
-              <i class="el-icon-s-help"></i>
-              <span>运行日志</span>
-            </el-menu-item>
+
             <el-menu-item index="/setting" @click="saveNavState('/setting')">
               <i class="el-icon-s-opportunity"></i>
               <span>扫描设置</span>
             </el-menu-item>
+
+            <el-menu-item index="/modpass" @click="saveNavState('/modpass')">
+              <i class="el-icon-s-custom"></i>
+              <span>修改密码</span>
+            </el-menu-item>
+
+            <el-menu-item index="/log" @click="saveNavState('/log')">
+              <i class="el-icon-s-help"></i>
+              <span>运行日志</span>
+            </el-menu-item>
+
+
           </el-menu-item-group>
         </el-submenu>
       </el-menu>

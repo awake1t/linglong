@@ -58,7 +58,7 @@ func AddTask(c *gin.Context) {
 
 	thread := c.PostForm("thread")
 
-	command := "http://127.0.0.1:18000/api/v1/nweport"
+	command := "portbrute"
 	valid := validation.Validation{}
 
 	var taskcycle string
@@ -87,7 +87,8 @@ func AddTask(c *gin.Context) {
 		sourcecontent = brute
 	} else if source == "2" {
 	}
-	arge = "source=" + source + "&iplist=" + sourcecontent + "&dict=1&thread=" + thread
+	//arge = "source=" + source + "&iplist=" + sourcecontent + "&dict=1&thread=" + thread
+	arge = sourcecontent+","+thread
 	// 输入长度限制
 	valid.Required(taskname, "taskname").Message("名称不能为空")
 
@@ -183,7 +184,6 @@ func StartTask(c *gin.Context) {
 func DeleteTask(c *gin.Context) {
 
 	id := com.StrTo(c.Param("id")).MustInt()
-	fmt.Println("idddsfsadassad is", id)
 
 	valid := validation.Validation{}
 	valid.Required(id, "id").Message("id不能为空")

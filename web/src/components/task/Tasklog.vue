@@ -20,7 +20,7 @@
             <el-tag>运行耗时: {{item.run_time}}</el-tag>
             <el-tag>运行时间: {{item.created_time}}</el-tag>
           </template>
-          
+
         </el-col>
 
         <el-col :span="6">
@@ -50,11 +50,6 @@
       <el-table :data="tasks" border stripe>
         <el-table-column label="ip" prop="ip"></el-table-column>
         <el-table-column label="port" prop="port"></el-table-column>
-                <!-- <el-table-column label="漏洞类型" prop="vulntype" width="130px" align="center">
-          <template scope="scope">
-            <el-tag type="success" close-transition>{{formatterVulnType(scope.row.vulntype)}}</el-tag>
-          </template>
-        </el-table-column> -->
 
         <el-table-column label="用户名" prop="user"></el-table-column>
         <el-table-column label="密码" prop="pass"></el-table-column>
@@ -142,7 +137,6 @@ export default {
     },
 
     async getTaskLog() {
-      
       try {
         let id = this.$route.params.id;
         const { data: res } = await this.$http.get("/masstasklog/" + id);
@@ -173,7 +167,7 @@ export default {
     },
 
     downLoad() {
-       return axios.defaults.baseURL+'downtasklog/'+this.$route.params.id
+       return axios.defaults.baseURL+'/downtasklog/'+this.$route.params.id
     },
 
 

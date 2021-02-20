@@ -25,14 +25,60 @@ func GetIplistBrute(port int, protocol string) (iplist []Iplist) {
 	return
 }
 
-func GetIplist(pageNum int, pageSize int, maps interface{},title string) (iplist []Iplist) {
-	db.Where(maps).Where("title LIKE ?", "%"+title+"%").Offset(pageNum).Limit(pageSize).Find(&iplist)
+func GetIplist(pageNum int, pageSize int, maps interface{}) (iplist []Iplist) {
+	dbTmp := db
+	querys := maps.(map[string]interface{})
+
+	if querys["protocol"] != nil {
+		dbTmp = dbTmp.Where("protocol LIKE ?", "%"+querys["protocol"].(string)+"%")
+	}
+
+
+	if querys["ip"] != nil {
+		dbTmp = dbTmp.Where("ip LIKE ?", "%"+querys["ip"].(string)+"%")
+	}
+
+	if querys["port"] != nil {
+		dbTmp = dbTmp.Where("port LIKE ?", "%"+querys["port"].(string)+"%")
+	}
+
+	if querys["title"] != nil {
+		dbTmp = dbTmp.Where("title LIKE ?", "%"+querys["title"].(string)+"%")
+	}
+
+	if querys["finger"] != nil {
+		dbTmp = dbTmp.Where("cms LIKE ?", "%"+querys["finger"].(string)+"%")
+	}
+
+	dbTmp.Offset(pageNum).Limit(pageSize).Order("updated_time  desc").Find(&iplist)
 	return
 }
 
 
 func GetIplistTotal(maps interface{}) (count int) {
-	db.Model(&Iplist{}).Where(maps).Count(&count)
+	dbTmp := db
+	querys := maps.(map[string]interface{})
+	if querys["protocol"] != nil {
+		dbTmp = dbTmp.Where("protocol LIKE ?", "%"+querys["protocol"].(string)+"%")
+	}
+
+	if querys["ip"] != nil {
+		dbTmp = dbTmp.Where("ip LIKE ?", "%"+querys["ip"].(string)+"%")
+	}
+
+	if querys["port"] != nil {
+		dbTmp = dbTmp.Where("port LIKE ?", "%"+querys["port"].(string)+"%")
+	}
+
+	if querys["title"] != nil {
+		dbTmp = dbTmp.Where("title LIKE ?", "%"+querys["title"].(string)+"%")
+	}
+
+	if querys["finger"] != nil {
+		dbTmp = dbTmp.Where("cms LIKE ?", "%"+querys["finger"].(string)+"%")
+	}
+
+	dbTmp.Model(&Iplist{}).Count(&count)
 	return
 }
 
@@ -65,6 +111,11 @@ func EditIplistByIp(ip ,port string, data interface{}) bool {
 	return true
 }
 
+func EditIplistByUrl(loginurl string, data interface{}) bool {
+	db.Model(&Iplist{}).Where("loginurl = ? ", loginurl).Updates(data)
+	return true
+}
+
 
 //创建任务，返回任务id
 func AddIplist(data map[string]interface{}) {
@@ -82,6 +133,12 @@ func AddIplist(data map[string]interface{}) {
 
 func GetIplistTitle() (iplist []Iplist) {
 	db.Find(&iplist)
+	return
+}
+
+// 获取全部http资产
+func GetIplistHttp() (iplist []Iplist) {
+	db.Where("protocol = ?","http").Find(&iplist)
 	return
 }
 

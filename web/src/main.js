@@ -23,19 +23,25 @@ Vue.filter('dateformat', function(dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
 // import NProgress from 'nprogress'
 // import 'nprogress/nprogress.css'
 
+
 import axios from 'axios'
-axios.defaults.baseURL = 'http://127.0.0.1:18000/api/v1/'
+import serverConfig from '../server-config'
+
+axios.defaults.baseURL = process.env.VUE_APP_BASE_API,
+// axios.defaults.baseURL = 'http://127.0.0.1:18000/api/v1/'
 Vue.prototype.$http = axios
 
+
+
 // 新方式
-axios.interceptors.request.use(    
-  config => {        
-    config.headers.Authorization = window.sessionStorage.getItem('token'); 
-    return config;    
-},    
+axios.interceptors.request.use(
+  config => {
+    config.headers.Authorization = window.sessionStorage.getItem('token');
+    return config;
+},
 error => {
-  console.log('nonon')        
-    return Promise.error(error);    
+  console.log('nonon')
+    return Promise.error(error);
 });
 
 // 默认方式

@@ -19,7 +19,7 @@ CREATE TABLE `iplist` (
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 /* 后台资产列表 */
@@ -37,7 +37,7 @@ CREATE TABLE `webloginlist` (
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*定时任务列表*/
 DROP TABLE IF EXISTS `task`;
@@ -59,7 +59,7 @@ CREATE TABLE `task` (
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 /*定时任务执行记录*/
@@ -78,7 +78,7 @@ CREATE TABLE `task_log` (
   `process_time` int(11) NOT NULL DEFAULT '0' COMMENT '消耗时间/毫秒',
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 /*端口爆破结果库*/
@@ -96,7 +96,7 @@ CREATE TABLE `portbruteres` (
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 /*全平台任务日志记录*/
 DROP TABLE IF EXISTS `log`;
@@ -112,7 +112,7 @@ CREATE TABLE `log` (
   `error` text NOT NULL COMMENT '错误信息',
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE `auth` (
@@ -129,7 +129,7 @@ CREATE TABLE `setting` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `login_word` text NOT NULL  COMMENT '敏感后台关键字',
   `login_url` text NOT NULL COMMENT '敏感后台url',
-  `masscan_deltime` int NOT NULL DEFAULT 7 COMMENT 'mass删除周期',
+  `masscan_deltime` int NOT NULL DEFAULT 100 COMMENT 'mass删除周期',
   `masscan_thred` int NOT NULL DEFAULT 0 COMMENT 'mass线程',
   `masscan_ip` MEDIUMTEXT NOT NULL  COMMENT 'mass要扫描的列表',
   `masscan_port` text NOT NULL  COMMENT 'mass要扫描的端口',
@@ -137,16 +137,93 @@ CREATE TABLE `setting` (
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
+-- /*存储指纹表*/
+-- DROP TABLE IF EXISTS "fingerprint";
+-- CREATE TABLE "fingerprint"(
+-- `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT NULL COMMENT '指纹名称',
+--   `description` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  DEFAULT NULL COMMENT 'description',
+--   `cookies` text NOT NULL COMMENT 'cookies',
+--   `headers` text NOT NULL COMMENT 'headers',
+--   `meta` text NOT NULL COMMENT 'meta',
+--   `meta` text NOT NULL COMMENT 'html',
+--   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+/*指纹*/
+DROP TABLE IF EXISTS `finger`;
+CREATE TABLE `finger`(
+    `id`           bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `name`     varchar(512)        NOT NULL DEFAULT '' COMMENT '指纹名称',
+    `description`     varchar(512)        NOT NULL DEFAULT '' COMMENT 'description',
+    `finger` text NOT NULL COMMENT 'finger',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+/*xrayRes*/
+DROP TABLE IF EXISTS `xrayres`;
+CREATE TABLE `xrayres`(
+    `id`           bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `url`     varchar(512)        NOT NULL DEFAULT '' COMMENT 'url',
+    `poc`     varchar(512)        NOT NULL DEFAULT '' COMMENT 'poc',
+    `hash`     varchar(512)        NOT NULL DEFAULT '' COMMENT 'hash',
+    `snapshot` text NOT NULL COMMENT 'snapshot',
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `hash` (`hash`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 INSERT INTO `auth` (`id`, `username`, `password`) VALUES (null, 'linglong', 'linglong5s');
 
 INSERT INTO `setting` (`id`, `login_word`,`login_url`,`masscan_thred`,`masscan_ip`,`masscan_port`,`masscan_white`) VALUES
  (null,  'login
-phpmyadmin', ' admin
-login', 100, '10.10.10.0/24', '80,22,3306', '10.10.10.10');
+phpmyadmin', 'admin
+login', 1000, '192.168.0.0/24,192.168.1.0/24,192.168.3.0/24,192.10.0.0/16', '22,80,443,445,3306,8000,8080,8088,8090,1521,5432,6379', '10.10.10.10');
+
+
+INSERT INTO `finger` (`name`,`description`,`finger`,`created_time`,`updated_time`) VALUES ('PHPMyAdmin','PHPMyAdmin','"PHPMyAdmin": {
+      "html": "<title>phpMyAdmin </title>",
+      "html": "/themes/pmahomme/img/logo_right.png",
+      "cookies": {
+        "phpMyAdmin": ""
+      }
+    }','20210213225711','20210213225711');
+
+INSERT INTO `finger` (`name`,`description`,`finger`,`created_time`,`updated_time`) VALUES ('Zabbix','Zabbix','"Zabbix": {
+      "html": "images/general/zabbix.ico",
+      "html": "Zabbix SIA",
+      "cookies": {
+        "zbx_sessionid": ""
+      }
+    }','20210213225759','20210213225759');
+
+INSERT INTO `finger` (`name`,`description`,`finger`,`created_time`,`updated_time`) VALUES ('Shiro','Shiro','"Shiro" : {
+  "cookies" : {
+  "rememberMe": ""
+  },
+  "html": ""
+ }','20210213225839','20210213225839');
+
+INSERT INTO `finger` (`name`,`description`,`finger`,`created_time`,`updated_time`) VALUES ('Alibaba-Druid','Alibaba-Druid','"AlibabaDruid": {
+      "html": "Druid Stat Index"
+}','20210213225929','20210213225929');
+
+ INSERT INTO `finger` (`name`,`description`,`finger`,`created_time`,`updated_time`) VALUES ('kibana','kibana',' "Kibana": {
+      "headers": {
+        "kbn-name": "kibana",
+        "kbn-version": "^([\\d.]+)$\\;version:\\1"
+      },
+      "html": "<title>Kibana</title>"
+    }','20210215201418','20210215201418');
+
 
 
 

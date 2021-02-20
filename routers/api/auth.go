@@ -33,7 +33,6 @@ func GetAuth(c *gin.Context) {
 				code = e.ERROR
 			} else {
 				data["token"] = token
-
 				code = e.SUCCESS
 			}
 

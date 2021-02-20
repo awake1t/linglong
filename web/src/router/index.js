@@ -9,6 +9,9 @@ import Tasklog from '../components/task/Tasklog.vue'
 import Webloginlist from '../components/webloginlist/Webloginlist.vue'
 import Log from '../components/log/Log.vue'
 import Setting from '../components/setting/Setting.vue'
+import Finger from '../components/finger/finger.vue'
+import Modpass from '../components/modpass/Modpass.vue'
+import Xrayres from '../components/xrayres/Xrayres.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +35,9 @@ const routes = [
     { path: '/tasklog/:id', component: Tasklog },
     { path: '/log', component: Log },
     { path: '/setting', component: Setting },
+    { path: '/finger', component: Finger },
+    { path: '/modpass', component: Modpass },
+    { path: '/xrayres', component: Xrayres },
 
     ]
   }

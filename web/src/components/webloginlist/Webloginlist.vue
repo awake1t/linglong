@@ -17,12 +17,12 @@
             v-model="queryInfo.title"
             clearable
             @clear="getIpList"
-            @keyup.enter.native="getIpListSingle"
+            @keyup.enter.native="getIpList"
           ></el-input>
         </el-col>
 
         <el-col :span="8">
-          <el-button type="primary" @click="getIpListSingle">搜索</el-button>
+          <el-button type="primary" @click="getIpList">搜索</el-button>
         </el-col>
       </el-row>
 
@@ -38,7 +38,7 @@
             >{{ scope.row.title }}</a>
           </template>
         </el-table-column>
-        <el-table-column label="url" prop="url"></el-table-column>
+        <el-table-column label="url" prop="url" width="280px" :show-overflow-tooltip="true"></el-table-column>
         <el-table-column label="loginurl" prop="loginurl"></el-table-column>
         <el-table-column label="ip" prop="ip"></el-table-column>
         <el-table-column label="port" prop="port"></el-table-column>

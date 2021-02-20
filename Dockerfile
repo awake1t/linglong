@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
+
 MAINTAINER drunk_kk
+
 ENV LC_ALL C.UTF-8
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -7,6 +9,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
 
 RUN set -x \
+   && apt-get clean \
    && apt-get update -y \
    && apt-get install -y nmap masscan
 

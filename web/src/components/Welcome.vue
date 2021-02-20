@@ -33,17 +33,20 @@
         </div>
       </div>
     </el-col>
+
+
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel" @click="handleSetLineChartData('shoppings')">
+      <div class="card-panel" @click="handleSetLineChartData('purchases')">
         <div class="card-panel-icon-wrapper icon-message">
-          <img src="../assets/vuln.png" alt style="width:75px" />
+          <img src="../assets/login.png" alt style="width:75px" />
         </div>
         <div class="card-panel-description">
-          <count-to :start-val="0" :end-val="vuln" :duration="3200" class="card-panel-num" />
-          <div class="card-panel-text">漏洞</div>
+          <count-to :start-val="0" :end-val="weblogin" :duration="3200" class="card-panel-num" />
+          <div class="card-panel-text">管理后台</div>
         </div>
       </div>
     </el-col>
+
 
     <el-col :xs="12" :sm="12" :lg="8">
       <div class="Echarts">
@@ -134,14 +137,14 @@ export default {
             type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
           }
         },
-        
+
         grid: {
           left: "3%",
           right: "4%",
           bottom: "3%",
           containLabel: true
         },
-        // toolbox: { 
+        // toolbox: {
         //   feature: {
         //     saveAsImage: {}
         //   }

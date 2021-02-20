@@ -4,9 +4,11 @@ go 1.14
 
 require (
 	github.com/360EntSecGroup-Skylar/excelize v1.4.1
+	github.com/PuerkitoBio/goquery v1.5.1
 	github.com/Ullaakut/nmap v2.0.0+incompatible
 	github.com/astaxie/beego v1.12.2
 	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394
+	github.com/bobesa/go-domain-util v0.0.0-20190911083921-4033b5f7dd89
 	github.com/denisenkom/go-mssqldb v0.0.0-20191124224453-732737034ffd
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/color v1.7.0

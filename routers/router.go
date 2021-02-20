@@ -23,19 +23,19 @@ func InitRouter() *gin.Engine {
 
 	apiv1 := r.Group("/api/v1")
 
-	r.LoadHTMLGlob("dist/*.html")              // 添加入口index.html
-	r.LoadHTMLFiles("./css/*")                   // 添加资源路径
-	r.Static("/css", "./dist/css")             // 添加资源路径
-	r.LoadHTMLFiles("fonts/*")                 // 添加资源路径
-	r.Static("/fonts", "./dist/fonts")         // 添加资源路径
-	r.LoadHTMLFiles("img/*")                   // 添加资源路径
-	r.Static("/img", "./dist/img")             // 添加资源路径
-	r.LoadHTMLFiles("js/*")                    // 添加资源路径
-	r.Static("/js", "./dist/js")               // 添加资源路径
-	r.StaticFile("/", "dist/index.html") //前端接口
+	//r.LoadHTMLGlob("dist/*.html")              // 添加入口index.html
+	//r.LoadHTMLFiles("./css/*")                   // 添加资源路径
+	//r.Static("/css", "./dist/css")             // 添加资源路径
+	//r.LoadHTMLFiles("fonts/*")                 // 添加资源路径
+	//r.Static("/fonts", "./dist/fonts")         // 添加资源路径
+	//r.LoadHTMLFiles("img/*")                   // 添加资源路径
+	//r.Static("/img", "./dist/img")             // 添加资源路径
+	//r.LoadHTMLFiles("js/*")                    // 添加资源路径
+	//r.Static("/js", "./dist/js")               // 添加资源路径
+	//r.StaticFile("/", "dist/index.html") //前端接口
 
 	//新建端口爆破 - 无认证
-	apiv1.POST("/nweport", v1.NewPortBrute)
+	//apiv1.POST("/nweport", v1.NewPortBrute)
 	apiv1.GET("/downtasklog/:id", v1.DownTaskLog)
 
 
@@ -45,7 +45,7 @@ func InitRouter() *gin.Engine {
 		// masscan资产任务列表
 		apiv1.GET("/masstasks", v1.GetIplist)
 		// ip资产列表搜索
-		apiv1.GET("/masstask", v1.GetIplistSearch)
+		apiv1.GET("/masstask", v1.GetIplist)
 		//新建
 		apiv1.POST("/masstask", v1.AddIplist)
 
@@ -72,15 +72,28 @@ func InitRouter() *gin.Engine {
 		apiv1.GET("/setting", v1.GetSetting)
 		//修改设置
 		apiv1.PUT("/setting", v1.EditSetting)
+		//修改密码
+		apiv1.PUT("/modpass", v1.EditPass)
 
 		// 管理后台列表
 		apiv1.GET("/webloginlist", v1.GetWebloginlist)
 		// 根据title搜索管理后台
-		apiv1.GET("/webloginlistsearch", v1.GetWebloginlistSearch)
+		apiv1.GET("/webloginlistsearch", v1.GetWebloginlist)
 
 		//数据统计页面接口
 		apiv1.GET("/dashboard", v1.Getdashboard)
 
+
+		apiv1.GET("/finger", v1.GetFinger)
+		apiv1.POST("/addfinger", v1.AddFinger)
+		// 测试指纹
+		apiv1.POST("/testfinger", v1.TestFinger)
+		apiv1.GET("/scanfinger/:id", v1.ScanFinger)
+		apiv1.DELETE("/delfinger/:id",v1.DeleteFinger)
+
+
+		apiv1.GET("/gerXrayRes", v1.GetXrayres)
+		apiv1.DELETE("/delxrayres/:id",v1.DeleteXrayres)
 
 	}
 	return r

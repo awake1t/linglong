@@ -99,6 +99,7 @@ func (m *Masscan) Run() error {
 
 	cmd = exec.Command(m.SystemPath, m.Args...)
 	fmt.Println("Masscan => ", cmd.Args)
+	fmt.Println("Masscan:", cmd)
 	cmd.Stdout = &outb
 	cmd.Stderr = &errs
 	err := cmd.Run()

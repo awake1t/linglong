@@ -2,6 +2,9 @@
 .env.local
 .env.*.local
 
+updata.md
+/web/node_modules/
+/pkg/third/xray_darwin_amd64
 
 # Editor directories and files
 .idea
@@ -39,5 +42,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-/web/node_modules/
+
 

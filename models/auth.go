@@ -15,3 +15,8 @@ func CheckAuth(username, password string) bool {
 
 	return false
 }
+
+func EditAuth(name string,data interface{}) bool {
+	db.Model(&Auth{}).Where("username = ? ",name).Updates(data)
+	return true
+}

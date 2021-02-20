@@ -13,15 +13,29 @@ type Webloginlist struct {
 	UpdatedTime string `json:"updated_time"`
 }
 
-func GetWebloginlist(pageNum int, pageSize int, maps interface{},title string) (webloginlist []Webloginlist) {
-	db.Where(maps).Where("title LIKE ?", "%"+title+"%").Offset(pageNum).Limit(pageSize).Find(&webloginlist)
+func GetWebloginlist(pageNum int, pageSize int, maps interface{}) (webloginlist []Webloginlist) {
+	dbTmp := db
+	querys := maps.(map[string]interface{})
+
+	if querys["title"] != nil {
+		dbTmp = dbTmp.Where("title LIKE ?", "%"+querys["title"].(string)+"%")
+	}
+
+	dbTmp.Offset(pageNum).Limit(pageSize).Order("updated_time  desc").Find(&webloginlist)
 	return
 }
 
 
 
 func GetWebloginlistTotal(maps interface{}) (count int) {
-	db.Model(&Webloginlist{}).Where(maps).Count(&count)
+	dbTmp := db
+	querys := maps.(map[string]interface{})
+
+	if querys["title"] != nil {
+		dbTmp = dbTmp.Where("title LIKE ?", "%"+querys["title"].(string)+"%")
+	}
+
+	dbTmp.Model(&Webloginlist{}).Count(&count)
 	return
 }
 
