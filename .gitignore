@@ -2,7 +2,7 @@
 .env.local
 .env.*.local
 
-updata.md
+.codelog
 /web/node_modules/
 /pkg/third/xray_darwin_amd64
 
