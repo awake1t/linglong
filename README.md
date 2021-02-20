@@ -24,10 +24,10 @@
 ![image](https://github.com/awake1t/linglong/blob/master/img/index.gif)
 
 **资产列表**
-![image](https://github.com/awake1t/linglong/blob/master/img/ip.png)
+![image](https://gitee.com/awake1t/linglong/raw/master/img/ip.png)
 
 **敏感后台**
-![image](https://github.com/awake1t/linglong/blob/master/img/login.png)
+![image](https://gitee.com/awake1t/linglong/raw/master/img/login.png)
 
 **指纹管理**
 ![image](https://github.com/awake1t/linglong/blob/master/img/finger.gif)
@@ -36,11 +36,12 @@
 ![image](https://github.com/awake1t/linglong/blob/master/img/task.gif)
 
 **任务详情**
-![image](https://github.com/awake1t/linglong/blob/master/img/task-de.png)
+![image](https://gitee.com/awake1t/linglong/raw/master/img/task-de.png)
 
 **xray**
-![image](https://github.com/awake1t/linglong/blob/master/img/xray.png)
-![image](https://github.com/awake1t/linglong/blob/master/img/xray-poc.png)
+![image](https://gitee.com/awake1t/linglong/raw/master/img/xray.png)
+![image](https://gitee.com/awake1t/linglong/raw/master/img/xray-poc.png)
+
 
 **设置**
 ![image](https://github.com/awake1t/linglong/blob/master/img/setting.gif)
@@ -86,6 +87,7 @@ docker-compose up -d
 ```
 
 运行结束后,运行`docker container ls -a`看下是否运行正常
+
 ![image](https://github.com/awake1t/linglong/blob/master/img/docker.png)
 
 web访问 http://ip:8001
