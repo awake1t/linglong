@@ -80,8 +80,10 @@
 运行如下命令
 
 ​```
-https://github.com/awake1t/linglong
+git clone https://github.com/awake1t/linglong
+
 cd linglong
+
 docker-compose up -d
 ​```
 
