@@ -77,9 +77,11 @@ tip:如果图片加载不出来,[点我去gitee看图片](https://gitee.com/awak
 
 ## 安装
 
-
 ### Docker安装
-运行如下命令
+
+#### 本地体验
+
+如果是**本地体验**下，直接运行如下命令
 
 ```bash
 git clone https://github.com/awake1t/linglong
@@ -91,17 +93,34 @@ docker-compose up -d
 
 ![image](https://github.com/awake1t/linglong/blob/master/img/docker.png)
 
+
+
+
+#### 安装到服务器
+
+```bash
+git clone https://github.com/awake1t/linglong
+cd linglong/web
+
+# 把 YourServerIp 换成你的IP地址
+sed -i 's#http://127.0.0.1:18000#http://YourServerIp:18000#g' ./dist/js/app.4dccb236.js && sed -i 's#http://127.0.0.1:18000#http://YourServerIp:18000#g' ./dist/js/app.4dccb236.js.map
+
+# 返回到 linglong的目录下
+cd ../
+docker-compose up -d
+```
+![image](https://github.com/awake1t/linglong/blob/master/img/docker1.png)
+
+
 web访问 http://ip:8001
-账号:linglong
-密码:linglong5s
+登录账号:linglong
+登录密码:linglong5s
 
 
-| 类型           | 用户名                                | 密码       |
-| -------------- | ------------------------------------- | ---------- |
 | Web账号        | linglong                                 | linglong5s|
+| -------------- | ------------------------------------- | ---------- |
+| 类型           | 用户名                                | 密码       |
 | mysql数据库 | root                                  | linglong8s  |
-
-
 
 **注: 首次运行在设置里修改扫描的网段范围,点击保存后就行了**
 
@@ -111,13 +130,21 @@ web访问 http://ip:8001
 
   我觉得一个好的工具就是 **拿来就用、用完既走**。后期会加入漏洞的机器人通知，发现漏洞自动通知到机器人，连你登录系统的步骤都省略。 或者看有没有方式把Goby集成。加油，干饭人！
 
+## 更新日志
 
+- [x] [2021-0210] 指纹资产管理、增删改查
+- [x] [2021-0210] 优化资产的查询方式
+- [x] [2021-0213] 发现资产POC自动扫描、扫描结果界面查看、删除
+- [x] [2021-0214] 密码修改功能，关闭Xray-server-error
+- [x] [2021-0215] Docker折腾了好久
+- [x] [2021-0225] 更新docker-compose的部署方式
 
 ## 致谢
 
 https://github.com/ysrc/xunfeng
 
 https://github.com/chaitin/xray
+
 
 
 

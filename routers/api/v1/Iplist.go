@@ -224,6 +224,7 @@ func InitMasscan() {
 	for _, v := range massRes {
 		HttpRes = append(HttpRes, CheckUrlStatus(v))
 	}
+
 	// 登录页面识别
 	findLoginWeb()
 

@@ -5,6 +5,7 @@
 .codelog
 /web/node_modules/
 /pkg/third/xray_darwin_amd64
+/img/linglong-21-02-22(compose版).zip
 
 # Editor directories and files
 .idea

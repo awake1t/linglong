@@ -27,8 +27,8 @@ Vue.filter('dateformat', function(dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
 import axios from 'axios'
 import serverConfig from '../server-config'
 
-axios.defaults.baseURL = process.env.VUE_APP_BASE_API,
-// axios.defaults.baseURL = 'http://127.0.0.1:18000/api/v1/'
+// axios.defaults.baseURL = process.env.VUE_APP_BASE_API,
+axios.defaults.baseURL = 'http://127.0.0.1:18000/api/v1/'
 Vue.prototype.$http = axios
 
 
