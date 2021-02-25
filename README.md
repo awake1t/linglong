@@ -79,7 +79,7 @@ tip:如果图片加载不出来,[点我去gitee看图片](https://gitee.com/awak
 
 ### Docker安装
 
-#### 本地体验
+#### 如果部署在本地体验
 
 如果是**本地体验**下，直接运行如下命令
 
@@ -93,10 +93,22 @@ docker-compose up -d
 
 ![image](https://github.com/awake1t/linglong/blob/master/img/docker.png)
 
+web访问 http://ip:8001
+登录账号:linglong
+登录密码:linglong5s
+
+
+| Web账号        | linglong                                 | linglong5s|
+| -------------- | ------------------------------------- | ---------- |
+| 类型           | 用户名                                | 密码       |
+| mysql数据库 | root                                  | linglong8s  |
+
+**注: 首次运行在设置里修改扫描的网段范围,点击保存后就行了**
 
 
 
-#### 安装到服务器
+
+#### 如果部署在服务器上
 
 ```bash
 git clone https://github.com/awake1t/linglong
@@ -111,18 +123,6 @@ docker-compose up -d
 ```
 ![image](https://github.com/awake1t/linglong/blob/master/img/docker2.png)
 
-
-web访问 http://ip:8001
-登录账号:linglong
-登录密码:linglong5s
-
-
-| Web账号        | linglong                                 | linglong5s|
-| -------------- | ------------------------------------- | ---------- |
-| 类型           | 用户名                                | 密码       |
-| mysql数据库 | root                                  | linglong8s  |
-
-**注: 首次运行在设置里修改扫描的网段范围,点击保存后就行了**
 
 
 
