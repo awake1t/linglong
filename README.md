@@ -109,7 +109,7 @@ sed -i 's#http://127.0.0.1:18000#http://YourServerIp:18000#g' ./dist/js/app.4dcc
 cd ../
 docker-compose up -d
 ```
-![image](https://github.com/awake1t/linglong/blob/master/img/docker1.png)
+![image](https://github.com/awake1t/linglong/blob/master/img/docker2.png)
 
 
 web访问 http://ip:8001
