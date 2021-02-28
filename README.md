@@ -65,7 +65,7 @@ tip:如果图片加载不出来,[点我去gitee看图片](https://gitee.com/awak
 
 **POC扫描**
 
-  对于任何一个扫描系统，poc扫描都是必不可少的。但是poc的更新一直是所有开源项目面临的一个问题。综合考虑用Xray的poc,感谢Xray对安全圈做出的贡献！ linglong会对每次新发现的资产进行一遍Xray的Poc扫描。如果发现漏洞会自动入库，可以可视化查看漏洞结果
+  对于任何一个扫描系统，poc扫描都是必不可少的。但是poc的更新一直是所有开源项目面临的一个问题。综合考虑用Xray的poc,系统集成的XRAY版本是1.7.0,感谢Xray对安全圈做出的贡献！ linglong会对每次新发现的资产进行一遍Xray的Poc扫描。如果发现漏洞会自动入库，可以可视化查看漏洞结果
 
 
 
@@ -116,6 +116,11 @@ cd linglong/web
 
 # 把 YourServerIp 换成你的IP地址
 sed -i 's#http://127.0.0.1:18000#http://YourServerIp:18000#g' ./dist/js/app.4dccb236.js && sed -i 's#http://127.0.0.1:18000#http://YourServerIp:18000#g' ./dist/js/app.4dccb236.js.map
+
+
+# 如果之前安装过，使用如下命令删除所有名字包含linglong的历史镜像
+docker rmi $(docker images | grep "linglong" | awk '{print $3}') 
+
 
 # 返回到 linglong的目录下
 cd ../
