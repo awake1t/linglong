@@ -108,7 +108,7 @@ web访问 http://ip:8001
 
 
 
-#### 如果部署在服务器上
+#### 如果部署在服务器上(地址不是127.0.0.1情况)
 
 ```bash
 git clone https://github.com/awake1t/linglong
