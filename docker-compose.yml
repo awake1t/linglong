@@ -6,8 +6,6 @@ services:
       - TZ=Asia/Shanghai
       - MYSQL_DATABASE=linglong
       - MYSQL_ROOT_PASSWORD=linglong8s
-    ports:
-      - "3305:3306"
     restart: always
     command: [
       '--character-set-server=utf8mb4',
