@@ -118,7 +118,7 @@ cd linglong/web
 sed -i 's#http://127.0.0.1:18000#http://YourServerIp:18000#g' ./dist/js/app.4dccb236.js && sed -i 's#http://127.0.0.1:18000#http://YourServerIp:18000#g' ./dist/js/app.4dccb236.js.map
 
 
-# 如果之前安装过，使用如下命令删除所有名字包含linglong的历史镜像
+# 重要！！！ 如果之前安装过，使用如下命令删除所有名字包含linglong的历史镜像
 docker rmi $(docker images | grep "linglong" | awk '{print $3}') 
 
 
@@ -143,6 +143,14 @@ docker-compose up -d
 - [x] [2021-0214] 密码修改功能，关闭Xray-server-error
 - [x] [2021-0215] Docker折腾了好久
 - [x] [2021-0225] 更新docker-compose的部署方式
+
+## 常见问题
+
+**Q: 为什么安装后，点击登录没有反应？？**
+
+A:大概率是你的部署的服务器地址不是 **127.0.0.1**, 所以会登录不上。 解决参考安装方式中： “如果部署在服务器上(地址不是127.0.0.1情况)”。 如果你的部署服务器地址是127.0.0.1,登录没反应。提供F12网络中的请求包截图，环境，部署方式到ISSUE。
+
+
 
 ## 致谢
 
