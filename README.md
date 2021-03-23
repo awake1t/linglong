@@ -103,7 +103,7 @@ web访问 http://ip:8001
 | 类型           | 用户名                                | 密码       |
 | mysql数据库 | root                                  | linglong8s  |
 
-**注: 首次运行在设置里修改扫描的网段范围,点击保存后就行了**
+### 注: 首次运行在设置里修改扫描的网段范围,点击保存后就行了。然后耐心等待系统自动扫描，扫描耗时您配置的网段+端口+速率会有变化
 
 
 
@@ -150,6 +150,9 @@ docker-compose up -d
 
 A:大概率是你的部署的服务器地址不是 **127.0.0.1**, 所以会登录不上。 解决参考安装方式中： “如果部署在服务器上(地址不是127.0.0.1情况)”。 如果你的部署服务器地址是127.0.0.1,登录没反应。提供F12网络中的请求包截图，环境，部署方式到ISSUE。
 
+**Q: 出现 Service 'web' failed to build : Error parsing reference: "nginx:1.15.3-alpine as production-stage" is not a valid repository/tag: invalid reference format？？报错**
+
+A: docker版本过低,查看docker的版本 `docker --version`。 解决: 需要升级docker的版本, 我的docker版本,  Docker version 19.03.4, build 9013bf5[docker升级参考](:https://github.com/xej520/Record-Share-Progress/blob/master/003---docker/007---%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7docker%E7%9A%84%E7%89%88%E6%9C%AC.md)
 
 
 ## 致谢
