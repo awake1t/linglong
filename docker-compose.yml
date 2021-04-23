@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   mysql:
     build: ./mysql
@@ -9,10 +10,7 @@ services:
     ports:
       - "3305:3306"
     restart: always
-    command: [
-      '--character-set-server=utf8mb4',
-      '--collation-server=utf8mb4_unicode_ci',
-    ]
+
   server:
     container_name: 'linglong-server'
     build: .
@@ -25,6 +23,7 @@ services:
     restart: always
     environment:
       - TZ=Asia/Shanghai
+
   web:
     container_name: 'linglong-web'
     restart: always
