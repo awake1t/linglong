@@ -1,4 +1,3 @@
-
 # linglong
 
   一款资产巡航扫描系统。系统定位是通过masscan+nmap无限循环去发现新增资产，自动进行端口弱口令爆破/、指纹识别、XrayPoc扫描。主要功能包括: `资产探测`、`端口爆破`、`Poc扫描`、`指纹识别`、`定时任务`、`管理后台识别`、`报表展示`。 使用场景是Docker搭建好之后，设置好你要扫描的网段跟爆破任务。就不要管他了，没事过来收漏洞就行了
@@ -79,7 +78,7 @@ tip:如果图片加载不出来,[点我去gitee看图片](https://gitee.com/awak
 
 ### Docker安装
 
-#### 如果部署在本地体验
+#### 如果部署在本地体验(本地机器或者自己的虚拟机)
 
 如果是**本地体验**下，直接运行如下命令
 
@@ -98,10 +97,10 @@ web访问 http://ip:8001
 登录密码:linglong5s
 
 
-| Web账号        | linglong                                 | linglong5s|
-| -------------- | ------------------------------------- | ---------- |
-| 类型           | 用户名                                | 密码       |
-| mysql数据库 | root                                  | linglong8s  |
+| Web账号     | linglong | linglong5s |
+| ----------- | -------- | ---------- |
+| 类型        | 用户名   | 密码       |
+| mysql数据库 | root     | linglong8s |
 
 ### 注: 首次运行在设置里修改扫描的网段范围,点击保存后就行了。然后耐心等待系统自动扫描，扫描耗时您配置的网段+端口+速率会有变化
 
@@ -125,6 +124,8 @@ docker rmi $(docker images | grep "linglong" | awk '{print $3}')
 # 返回到 linglong的目录下
 cd ../
 docker-compose up -d
+
+一般这时候就部署好了,如果访问不了. 要确认下服务器上安全组的8001和18000有没有打开.
 ```
 ![image](https://github.com/awake1t/linglong/blob/master/img/docker2.png)
 
@@ -150,6 +151,14 @@ docker-compose up -d
 
 A:大概率是你的部署的服务器地址不是 **127.0.0.1**, 所以会登录不上。 解决参考安装方式中： “如果部署在服务器上(地址不是127.0.0.1情况)”。 如果你的部署服务器地址是127.0.0.1,登录没反应。提供F12网络中的请求包截图，环境，部署方式到ISSUE。
 
+
+
+**Q: 怎么知道服务器的某个端口有没有打开**
+
+A: 比如8002端口, 在服务器上使用命令 `python3 -m http.server 8002` 启动一个临时WebServer. 然后在自己本地电脑 `curl -v http://ip:8002` 如果有返回,就代表服务器端口是开的. 
+
+
+
 **Q: 出现 Service 'web' failed to build : Error parsing reference: "nginx:1.15.3-alpine as production-stage" is not a valid repository/tag: invalid reference format？？报错**
 
 A: docker版本过低,查看docker的版本 `docker --version`。 解决: 需要升级docker的版本, 我的docker版本,  Docker version 19.03.4, build 9013bf5[docker升级参考](:https://github.com/xej520/Record-Share-Progress/blob/master/003---docker/007---%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7docker%E7%9A%84%E7%89%88%E6%9C%AC.md)
@@ -167,5 +176,3 @@ https://github.com/chaitin/xray
 linglong 是 404Team [星链计划2.0](https://github.com/knownsec/404StarLink2.0-Galaxy)中的一环，如果对linglong  有任何疑问又或是想要找小伙伴交流，可以参考星链计划的加群方式。
 
 - [https://github.com/knownsec/404StarLink2.0-Galaxy#community](https://github.com/knownsec/404StarLink2.0-Galaxy#community)
-
-
