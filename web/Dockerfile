@@ -2,7 +2,7 @@
 #
 #MAINTAINER drunk_kk
 #
-#RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+#RUN npm install -g cnpm --registry=https://registry.npmmirror.com
 #
 #WORKDIR /app
 #
