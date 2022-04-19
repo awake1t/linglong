@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
-	//"linglong/global"
+	"linglong/global"
 	"time"
 )
 
@@ -31,7 +31,7 @@ func GenerateToken(username, password string) (string, error) {
 	}
 
 	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	token, err := tokenClaims.SignedString(jwtSecret)
+	token, err := tokenClaims.SignedString([]byte(global.AppSetting.JwtSecret))
 
 	return token, err
 }
